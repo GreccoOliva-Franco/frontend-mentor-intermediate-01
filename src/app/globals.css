@@ -52,10 +52,21 @@
 }
 
 @theme inline {
+    /* Challenge variables */
+    --color-Orange: hsl(26, 100%, 55%);
+    --color-Orange-light: hsl(25, 100%, 94%);
+
+    --color-Gray-blue-lighter: hsl(223, 64%, 98%);
+    --color-Gray-blue: hsl(220, 14%, 75%);
+    --color-Gray-blue-darker: hsl(219, 9%, 45%);
+    --color-Gray-blue-darkest: hsl(220, 13%, 13%);
+
     --color-background: var(--White);
 
     --color-button-bg: var(--Orange);
     --color-button-text: var(--Black);
+
+    --color-badge-bg: var(--Orange);
 
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);

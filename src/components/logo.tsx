@@ -5,8 +5,8 @@ export default function Logo() {
     <Image
       src={"/logo.svg"}
       alt="Sneakers's logo"
-      height={1}
-      width={1}
+      height={400}
+      width={400}
       className="size-auto"
     />
   );
