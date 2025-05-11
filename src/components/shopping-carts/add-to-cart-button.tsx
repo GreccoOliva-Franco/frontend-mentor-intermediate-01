@@ -60,7 +60,7 @@ function AddButton({
       disabled={disabled}
       className={cn(
         "flex justify-center items-center gap-4 p-4 bg-button-bg drop-shadow-xl drop-shadow-button-shadow/50 rounded-lg text-button-text font-bold",
-        "has-[disabled=true]:bg-Gray-blue",
+        disabled && "bg-Gray-blue drop-shadow-none",
         className
       )}
     >

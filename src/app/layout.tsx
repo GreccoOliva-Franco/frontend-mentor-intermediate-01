@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/styles";
 import Header from "@/components/headers/header";
 import Providers from "./providers";
+import { Separator } from "@/components/ui/separator";
 
 const font = Kumbh_Sans({
   subsets: ["latin"],
@@ -26,10 +27,11 @@ export default function RootLayout({
           <div
             className={cn(
               "flex flex-col min-h-screen min-w-screen items-center pb-16 bg-background",
-              "sm:min-w-0 sm:max-w-8/10 sm:mx-auto"
+              "md:min-w-0 lg:max-w-8/10 lg:mx-auto"
             )}
           >
             <Header />
+            <Separator className="mt-2"/>
             {children}
           </div>
         </Providers>

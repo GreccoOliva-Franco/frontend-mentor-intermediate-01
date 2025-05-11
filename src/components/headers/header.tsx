@@ -9,9 +9,9 @@ export default function Header() {
   return (
     <header className="flex justify-between items-center w-full p-6 gap-12">
       <div className="flex items-center gap-4">
-        <MobileMenu className="sm:hidden" items={navbarItems} />
+        <MobileMenu className="md:hidden" items={navbarItems} />
         <Logo />
-        <nav className={cn("hidden ml-8", "sm:flex sm:gap-3")}>
+        <nav className={cn("hidden", "md:flex md:gap-3")}>
           {navbarItems.map((item, index) => (
             <a
               key={index}

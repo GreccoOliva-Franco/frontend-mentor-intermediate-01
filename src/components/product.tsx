@@ -28,7 +28,7 @@ type ProductImage = {
 };
 
 function ProductTitle({ children }: { children: string }) {
-  return <h1 className="text-3xl font-bold">{children}</h1>;
+  return <h1 className="text-3xl font-bold md:text-4xl">{children}</h1>;
 }
 
 function ProductDescription({
@@ -43,13 +43,18 @@ function ProductDescription({
 
 function ProductPrices({ prices }: Pick<ProductDetials, "prices">) {
   return (
-    <div className="flex justify-between items-center sm:flex-col">
+    <div
+      className={cn(
+        "flex justify-between items-center",
+        "sm:flex-col sm:items-start sm:gap-2"
+      )}
+    >
       <div className="flex items-center gap-4">
         <span className="text-3xl text-black font-bold">
           ${Price.toFinancial(prices.final)}
         </span>
         <span className="py-0.5 px-2 bg-black rounded-sm text-white font-bold">
-          {Price.toFinancial(prices.discount).split('.')[0]}%
+          {Price.toFinancial(prices.discount).split(".")[0]}%
         </span>
       </div>
       <span className="text-Gray-blue-darker font-bold line-through">
@@ -82,19 +87,28 @@ export default function Product({ product }: Props) {
     <>
       <section
         id="product-images"
-        className="col-span-1 relative flex w-full aspect-[4/3] overflow-hidden"
+        className={cn(
+          "col-span-1 relative flex flex-col justify-center items-center gap-6 overflow-hidden",
+          "md:w-8/10 md:mx-auto"
+        )}
       >
         <Image
           src={product.images[selectedIndex].src}
           alt={product.images[selectedIndex].alt}
           height={400}
           width={400}
-          className="object-cover"
+          className={cn(
+            "w-full aspect-[4/3] object-cover",
+            "md:rounded-xl md:aspect-square"
+          )}
         />
         <Button
           onClick={showPreviousImage}
           disabled={selectedIndex === 0}
-          className="absolute top-45/100 left-4 p-2 aspect-square rounded-full bg-white flex justify-center items-center"
+          className={cn(
+            "absolute top-45/100 left-4 p-2 aspect-square rounded-full bg-white flex justify-center items-center",
+            "md:hidden"
+          )}
         >
           <Image
             src={"/icon-previous.svg"}
@@ -107,7 +121,10 @@ export default function Product({ product }: Props) {
         <Button
           onClick={showNextImage}
           disabled={selectedIndex === maxIndex}
-          className="absolute top-45/100 right-4 p-2 aspect-square rounded-full bg-white flex justify-center items-center"
+          className={cn(
+            "absolute top-45/100 right-4 p-2 aspect-square rounded-full bg-white flex justify-center items-center",
+            "md:hidden"
+          )}
         >
           <Image
             src={"/icon-next.svg"}
@@ -117,16 +134,41 @@ export default function Product({ product }: Props) {
             className="w-3 aspect-auto ml-0.5"
           />
         </Button>
+        <div className="hidden md:flex md:w-full md:justify-between gap-4">
+          {product.images.map((image, index) => (
+            <button
+              key={index}
+              onClick={() => setSelectedIndex(index)}
+              disabled={index === selectedIndex}
+              className="cursor-pointer"
+            >
+              <Image
+                src={image.thumbnail}
+                alt={image.alt}
+                height={50}
+                width={50}
+                className={cn(
+                  "flex-grow size-full aspect-square rounded-md",
+                  "hover:bg-white hover:opacity-50",
+                  selectedIndex === index && "bg-white opacity-50"
+                )}
+              />
+            </button>
+          ))}
+        </div>
       </section>
       <section
         id="product-details"
-        className="col-span-1 flex flex-col gap-4 p-8"
+        className={cn(
+          "col-span-1 flex flex-col gap-4 p-8",
+          "md:flex-grow md:justify-center md:w-8/10 md:mx-auto"
+        )}
       >
         <h2 className="text-sm text-Gray-blue-darker font-bold tracking-widest uppercase">
           Sneaker Company
         </h2>
         <ProductTitle>{product.title}</ProductTitle>
-        <ProductDescription className="sm:mt-2">
+        <ProductDescription className="sm:mt-2 md:mt-4">
           {product.description}
         </ProductDescription>
         <ProductPrices prices={product.prices} />
