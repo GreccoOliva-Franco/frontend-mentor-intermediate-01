@@ -1,56 +1,24 @@
 "use client";
 
-import { useCallback, useReducer } from "react";
-import { Item } from "./interfaces";
+import { useContext } from "react";
+import { useStore } from "zustand";
 
-enum Action {
-  ADD = "add",
-  REMOVE = "remove",
-}
+import { ShoppingCartContext } from "./provider";
 
 export function useShoppingCart() {
-  const initialState = {
-    items: [
-      {
-        id: 1,
-        name: "Fall Limited Edition Sneakers",
-        image: { src: "/image-product-1-thumbnail.jpg", alt: "alt" },
-        quantity: 2,
-        unitPrice: 125,
-      },
-    ],
-  } satisfies {
-    items: Item[];
-  };
-  const [state, dispatch] = useReducer((prevState, { action, context }) => {
-    switch (action) {
-      case "add": {
-        return { ...prevState, items: [...prevState.items, context.data] };
-      }
-      case "remove": {
-        const { id } = context.data as { id: number };
+  const shoppingCart = useContext(ShoppingCartContext);
 
-        return {
-          ...prevState,
-          items: prevState.items.filter((item) => item.id !== id),
-        };
-      }
-      default: {
-        throw new Error("Invalid action");
-      }
-    }
-  }, initialState);
+  if (!shoppingCart) {
+    throw new Error("There is no context. Make sure the provider is added");
+  }
 
-  const addItem = useCallback(
-    (item: Item) => dispatch({ action: Action.ADD, context: { item } }),
-    []
+  const { products, addProduct, deleteProduct } = useStore(
+    shoppingCart,
+    (store) => store
   );
-  const removeItem = useCallback((id: number) => {
-    dispatch({ action: Action.REMOVE, data: { id } });
-  }, []);
 
   return {
-    ...state,
-    actions: { addItem, removeItem },
+    products,
+    actions: { addProduct, deleteProduct },
   };
 }
