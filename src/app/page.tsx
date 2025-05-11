@@ -1,5 +1,20 @@
-"use client";
+import Loader from "@/components/ui/loader";
+import Product from "@/components/product";
+import { cn } from "@/lib/styles";
+import { Suspense } from "react";
+import product from "@/app/data.json";
 
-export default function RootHome() {
-  return <main className="mt-3 mb-16 col-span-1">Main content</main>;
+export default async function RootHome() {
+  return (
+    <main className="h-full">
+      <section
+        id="product"
+        className={cn("grid grid-cols-1", "sm:grid-cols-2")}
+      >
+        <Suspense fallback={<Loader />}>
+          <Product product={product} />
+        </Suspense>
+      </section>
+    </main>
+  );
 }

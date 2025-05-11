@@ -1,0 +1,16 @@
+{
+    "id": 1,
+    "title": "Fall Limited Edition Sneakers",
+    "description": "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.",
+    "images": [
+        { "src": "/image-product-1.jpg", "thumbnail": "/image-product-1-thumbnail.jpg", "alt": "product image number 1" },
+        { "src": "/image-product-2.jpg", "thumbnail": "/image-product-2-thumbnail.jpg", "alt": "product image number 2" },
+        { "src": "/image-product-3.jpg", "thumbnail": "/image-product-3-thumbnail.jpg", "alt": "product image number 3" },
+        { "src": "/image-product-4.jpg", "thumbnail": "/image-product-4-thumbnail.jpg", "alt": "product image number 4" }
+    ],
+    "prices": {
+        "list": 25000,
+        "discount": 5000,
+        "final": 12500
+    }
+}

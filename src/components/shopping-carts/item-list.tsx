@@ -2,19 +2,29 @@ import Image from "next/image";
 import CheckOut from "@/components/check-out";
 import { useShoppingCart } from "./hooks";
 import { Item } from "./interfaces";
+import { Price } from "@/lib/prices";
 
 function EmptyCart() {
   return <p className="text-center my-24">Your cart is empty.</p>;
 }
 
 function CartItem(item: Item) {
-  const itemTotalDetailed = `$${item.unitPrice.toFixed(2)} x ${item.quantity} `;
-  const itemTotal = "$" + (item.unitPrice * item.quantity).toFixed(2);
+  const { actions } = useShoppingCart();
+
+  const itemTotalDetailed = `$${Price.toFinancial(item.unitPrice)} x ${
+    item.quantity
+  } `;
+  const total = item.quantity * item.unitPrice;
+  const itemTotal = "$" + Price.toFinancial(total);
+
+  function deleteItem() {
+    actions.deleteProduct(item.id);
+  }
 
   return (
     <div className="flex flex-grow justify-center gap-4">
       <Image
-        src={item.image.src}
+        src={item.image.thumbnail}
         alt={item.image.alt}
         height={400}
         width={400}
@@ -27,7 +37,7 @@ function CartItem(item: Item) {
           <strong className="text-black font-bold">{itemTotal}</strong>
         </p>
       </div>
-      <button className="hover:cursor-pointer">
+      <button onClick={deleteItem} className="hover:cursor-pointer">
         <Image
           src={"/icon-delete.svg"}
           alt="delete cart item"
@@ -51,12 +61,12 @@ function CartList({ items }: { items: Item[] }) {
 }
 
 export default function ShoppingCartList() {
-  const { items } = useShoppingCart();
+  const { products } = useShoppingCart();
 
   return (
     <div className="mb-3 flex flex-col justify-center items-center gap-8 px-6 py-4">
-      {!items.length ? <EmptyCart /> : <CartList items={items} />}
-      {!!items.length && <CheckOut />}
+      {!products.length ? <EmptyCart /> : <CartList items={products} />}
+      {!!products.length && <CheckOut />}
     </div>
   );
 }
