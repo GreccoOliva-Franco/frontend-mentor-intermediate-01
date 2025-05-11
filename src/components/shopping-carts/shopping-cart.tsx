@@ -8,16 +8,17 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogDescription,
-} from "./ui/dialog";
-import { Separator } from "./ui/separator";
-import ShoppingCartList from "./shopping-carts/item-list";
-import { Badge } from "./ui/badge";
-import { useShoppingCart } from "./shopping-carts/hooks";
+} from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+
+import ShoppingCartList from "./item-list";
+import { useShoppingCart } from "./hooks";
 
 export default function ShoppingCart() {
-  const { items } = useShoppingCart();
+  const { products } = useShoppingCart();
 
-  const count = items.reduce(
+  const count = products.reduce(
     (acc, curr) => (curr.quantity ? curr.quantity + acc : acc),
     0
   );

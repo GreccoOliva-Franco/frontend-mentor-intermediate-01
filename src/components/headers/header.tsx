@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { MobileMenu } from "./headers/mobile";
-import { navbarItems } from "./headers/items";
-import ShoppingCart from "./shopping-cart";
-import Logo from "./logo";
+import { MobileMenu } from "./mobile";
+import { navbarItems } from "./items";
+import ShoppingCart from "@/components/shopping-carts/shopping-cart";
+import Logo from "@/components/logos/logo";
 import { cn } from "@/lib/styles";
 
 export default function Header() {
