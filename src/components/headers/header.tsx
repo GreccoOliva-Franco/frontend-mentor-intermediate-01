@@ -1,13 +1,14 @@
-import Image from "next/image";
+import { cn } from "@/lib/styles";
+import Logo from "@/components/logos/logo";
+import ShoppingCart from "@/components/shopping-carts/shopping-cart";
+
+import UserAvatar from "./user-avatar";
 import { MobileMenu } from "./mobile";
 import { navbarItems } from "./items";
-import ShoppingCart from "@/components/shopping-carts/shopping-cart";
-import Logo from "@/components/logos/logo";
-import { cn } from "@/lib/styles";
 
 export default function Header() {
   return (
-    <header className="flex justify-between items-center w-full p-6 gap-12">
+    <header className="flex justify-between items-center w-full p-6 pb-8 gap-12">
       <div className="flex items-center gap-4">
         <MobileMenu className="md:hidden" items={navbarItems} />
         <Logo />
@@ -16,7 +17,7 @@ export default function Header() {
             <a
               key={index}
               href={item.href}
-              className="p-2 text-Gray-blue-darker"
+              className="p-2 text-Gray-blue-darker cursor-pointer hover:inset-ring-bo hover:outline-Orange"
             >
               {item.label}
             </a>
@@ -26,13 +27,7 @@ export default function Header() {
 
       <div className="flex items-center gap-6 sm:gap-8">
         <ShoppingCart />
-        <Image
-          src={"/image-avatar.png"}
-          alt="Avatar"
-          height={400}
-          width={400}
-          className="size-6 sm:size-12"
-        />
+        <UserAvatar />
       </div>
     </header>
   );

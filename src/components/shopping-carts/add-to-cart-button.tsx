@@ -18,11 +18,11 @@ function QuantitySetter({
   return (
     <div
       className={cn(
-        "flex justify-between items-center p-4 bg-Gray-blue-lighter rounded-lg",
+        "flex flex-grow justify-between items-center bg-Gray-blue-lighter rounded-lg",
         className
       )}
     >
-      <button onClick={decrement}>
+      <button onClick={decrement} className="p-4 cursor-pointer">
         <Image
           src={"/icon-minus.svg"}
           alt=""
@@ -32,7 +32,7 @@ function QuantitySetter({
         />
       </button>
       <span className="font-bold">{quantity}</span>
-      <button onClick={increment}>
+      <button onClick={increment} className="p-4 cursor-pointer">
         <Image
           src={"/icon-plus.svg"}
           alt=""
@@ -59,8 +59,9 @@ function AddButton({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "flex justify-center items-center gap-4 p-4 bg-button-bg drop-shadow-xl drop-shadow-button-shadow/50 rounded-lg text-button-text font-bold",
-        disabled && "bg-Gray-blue drop-shadow-none",
+        "flex justify-center items-center gap-4 p-4 bg-button-bg drop-shadow-xl drop-shadow-button-shadow/50 rounded-lg cursor-pointer",
+        "text-button-text font-bold",
+        disabled ? "bg-Gray-blue drop-shadow-none" : "hover:bg-button-bg/50",
         className
       )}
     >

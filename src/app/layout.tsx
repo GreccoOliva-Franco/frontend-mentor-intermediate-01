@@ -31,7 +31,7 @@ export default function RootLayout({
             )}
           >
             <Header />
-            <Separator className="mt-2"/>
+            <Separator />
             {children}
           </div>
         </Providers>
